@@ -1,0 +1,62 @@
+// Initialize variables for the player's name, location, and inventory
+let playerName = "";
+let playerLocation = "town square";
+let playerInventory = ["wallet"];
+
+// Define the different locations in the game
+const locations = {
+  "town square": {
+    description: "You are in the town square. You see a market to the east and a large castle to the west.",
+    exits: ["east", "west"]
+  },
+  "market": {
+    description: "You are in the market. You see various stalls selling different goods.",
+    exits: ["west"]
+  },
+  "castle": {
+    description: "You are in the castle. You see a throne room to the north and a dungeon to the south.",
+    exits: ["north", "south"]
+  },
+  "throne room": {
+    description: "You are in the throne room. You see a golden throne and a crown on top of it.",
+    exits: ["south"]
+  },
+  "dungeon": {
+    description: "You are in the dungeon. You see a dark passageway leading deeper into the castle.",
+    exits: ["north"]
+  }
+};
+
+// Define a function to change the player's location
+function move(direction) {
+  if (locations[playerLocation].exits.includes(direction)) {
+    if (direction === 'east') {
+      playerLocation = "market";
+    } else if (direction === 'west') {
+      playerLocation = "castle";
+    } else if (direction === 'north') {
+      playerLocation = "throne room";
+    } else if (direction === 'south') {
+      playerLocation = "dungeon";
+    }
+    console.log(locations[playerLocation].description);
+  } else {
+    console.log("You can't go that way.");
+  }
+}
+
+// Define a function to get the player's name
+function getName() {
+  playerName = prompt("What is your name?");
+  console.log("Welcome, " + playerName + "!");
+}
+
+// Define a function to start the game
+function startGame() {
+  console.log("Welcome to the Adventure Game!");
+  getName();
+  console.log(locations[playerLocation].description);
+}
+
+// Start the game
+startGame();
